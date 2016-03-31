@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block page_content %}
+<div class="page-header">
+  <h2>{% if current_user.is_authenticated %}{{ current_user.username }}，老朋友{% else %}啊～～一个新的朋友{% endif %}，向您致敬！</h2>
+</div>
+{% endblock %}

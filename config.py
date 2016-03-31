@@ -11,6 +11,15 @@ class Config:
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_ECHO = True
     SQLALCHEMY_TRACK_MODIFICATIONS = True
+    # 邮件服务配置
+    MAIL_SERVER = 'smtp.googlemail.com'
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = os.environ.get('MAIL_USER')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASS')
+
+    MAIL_SUBJECT_PREFIX = '[I DEV]'
+    MAIL_SENDER = 'I DEV <no-reply@i_dev.com>'
 
     # 空的配置初始化方法
     def init_app(self):

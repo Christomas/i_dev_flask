@@ -5,4 +5,4 @@ from app.main import main
 
 @main.route('/')
 def index():
-    return render_template('message.html', message='欢迎光临！')
+    return render_template('index.html', title='I DEV 主页')

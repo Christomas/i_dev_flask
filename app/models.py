@@ -24,6 +24,10 @@ class Model(db.Model):
     """通用模型类。"""
     __abstract__ = True
 
+    @property
+    def session(self):
+        return db.session
+
 
 class User(UserMixin, Model):
     """用户模型类，继承flask_login的功能。"""
@@ -32,6 +36,7 @@ class User(UserMixin, Model):
     username = Column(db.String(64), unique=True, index=True, nullable=False)
     email = Column(db.String(64), unique=True, index=True, nullable=False)
     password_hash = Column(db.String(128), nullable=False)
+    confirmed = Column(db.Boolean, nullable=False, default=False)
 
     @property
     def password(self):
