@@ -38,3 +38,22 @@ class LoginForm(Form):
     password = PasswordField('密码：', validators=[DataRequired()])
     remember_me = BooleanField('保持登录状态')
     submit = SubmitField('登录')
+
+
+class ResetPasswordRequestForm(Form):
+    email = StringField(
+        '邮箱', validators=[
+            DataRequired(), Length(1, 64), Email(message='请输入有效的邮箱地址。')])
+    submit = SubmitField('提交')
+
+
+class ResetPasswordForm(Form):
+    email = StringField(
+        '邮箱：', validators=[
+            DataRequired(), Length(1, 64), Email(message='请输入有效的邮箱地址')],
+        render_kw=dict(readonly=True))
+    password = PasswordField(
+        '新密码：', validators=[
+            DataRequired(), EqualTo('password2', message='输入的两次密码不一致。')])
+    password2 = PasswordField('确认新密码：', validators=[DataRequired()])
+    submit = SubmitField('确认变更密码')

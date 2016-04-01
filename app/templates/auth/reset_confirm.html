@@ -3,10 +3,12 @@
 {% block page_content %}
 <div class="row">
   <div class="page-header col-md-5">
-    <h2>请输入密码进行验证</h2>
+    <h2>请输入您的新密码</h2>
   </div>
 </div>
 <div class="row">
-  <div class="page-content col-md-5">{{wtf.quick_form(form)}}</div>
+  <div class="page-content col-md-5">
+    {{wtf.quick_form(form)}}
+  </div>
 </div>
 {% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block page_content %}
+<div class="row">
+  <div class="page-header">
+    <h2>重新发送验证邮件？<a href="{{ url_for('auth.resent_confirmation') }}">点击这里。</a></h2>
+  </div>
+</div>
+{% endblock %}

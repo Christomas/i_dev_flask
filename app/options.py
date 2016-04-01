@@ -37,4 +37,3 @@ def load_token(token, key, secret_key=os.environ.get('SECRET_KEY')):
     except:
         return None
     return data.get(key)
-
