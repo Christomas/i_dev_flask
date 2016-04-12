@@ -57,3 +57,24 @@ class ResetPasswordForm(Form):
             DataRequired(), EqualTo('password2', message='输入的两次密码不一致。')])
     password2 = PasswordField('确认新密码：', validators=[DataRequired()])
     submit = SubmitField('确认变更密码')
+
+
+class ChangePasswordForm(Form):
+    password = PasswordField('原密码：', validators=[DataRequired()])
+    new_password = PasswordField(
+        '新密码：', validators=[
+            DataRequired(), EqualTo('new_password2', message='输入的两次密码不一致。')])
+    new_password2 = PasswordField('确认新密码：', validators=[DataRequired()])
+    submit = SubmitField('确认修改')
+
+
+class ChangeEmailForm(Form):
+    email = StringField('新邮箱：',
+        validators=[DataRequired(), Length(1, 64), Email(message='请输入有效的邮箱地址。')])
+    password = PasswordField('密码：', validators=[DataRequired()])
+    submit = SubmitField('确认修改')
+
+    def validate_email(self, field):
+        if User.query.filter_by(email=field.data).first():
+            return ValidationError('该邮箱已被注册。')
+
