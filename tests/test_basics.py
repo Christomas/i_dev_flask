@@ -5,8 +5,8 @@ from flask import current_app
 from app import create_app, db
 
 
-class BasicsTestCase(TestCase):
-    """基本测试。"""
+class BaseTestCase(TestCase):
+    """测试基类。"""
     def setUp(self):
         """测试准备。"""
         self.app = create_app('testing')
@@ -20,6 +20,9 @@ class BasicsTestCase(TestCase):
         db.drop_all()
         self.app_context.pop()
 
+
+class AppTestCase(BaseTestCase):
+    """基本测试。"""
     def test_app_exists(self):
         """测试当前app存在。"""
         self.assertFalse(current_app is None)

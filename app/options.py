@@ -25,8 +25,9 @@ def send_email(to, subject, template, **kwargs):
     return thr
 
 
-def dump_token(key, value, secret_key=os.environ.get('SECRET_KEY')):
-    s = Serializer(secret_key, expires_in=3600)
+def dump_token(
+        key, value, secret_key=os.environ.get('SECRET_KEY'), expires_in=3600):
+    s = Serializer(secret_key, expires_in)
     return s.dumps({key: value})
 
 

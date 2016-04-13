@@ -175,7 +175,7 @@ def change_email():
             current_user.email = form.email.data
             current_user.confirmed = False
             current_user.session.add(current_user)
-            token = options.dump_token('change_mail', current_user.id)
+            token = options.dump_token('change_email', current_user.id)
             options.send_email(
                 current_user.email, '验证邮箱', 'auth/mail/confirm',
                 user=current_user,
@@ -193,5 +193,7 @@ def new_confirm(token):
     if user_id is None or user_id != current_user.id:
         flash('链接无效或已过期！')
         return redirect(url_for('auth.unconfirmed'))
+    current_user.confirmed = True
+    current_user.session.add(current_user)
     flash('您的新邮箱已经通过验证。')
     return redirect(url_for('main.index'))
